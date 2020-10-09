@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Dashboard  />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dashboard from "./components/Dashboard.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data:() => ({
+    cities:[
+      {
+        name: 'Amsterdam',
+        description: 'A cyclists dream'
+      },
+      {
+        name: 'Madrid',
+        description: 'A cyclists dream'
+      },
+      {
+        name: 'Amsterdam',
+        description: 'A cyclists dream'
+      }
+    ]
+  }),
   components: {
-    HelloWorld
-  }
-}
+    Dashboard,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang='scss'>
+@font-face {
+  font-family: "Lato-Light";
+  src: local("Lato-Light"), url("./fonts/Lato-Light.ttf") format("truetype"),
+    url("/fonts/Lato-Light.woff2") format("woff2"),
+    url("/fonts/Lato-Light.woff") format("woff");
+}
+html {
+  font-family: "Lato-Light", Helvetica, sans-serif;
+}
+
+body {
+  margin: 20px;
 }
 </style>
