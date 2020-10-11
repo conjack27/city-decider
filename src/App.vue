@@ -1,30 +1,19 @@
 <template>
-  <div id="app">
-    <Dashboard  />
+  <div id="app" :class="currentCity">
+    <Dashboard />
   </div>
 </template>
 
 <script>
+import store from "./store/store";
 import Dashboard from "./components/Dashboard.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
-  data:() => ({
-    cities:[
-      {
-        name: 'Amsterdam',
-        description: 'A cyclists dream'
-      },
-      {
-        name: 'Madrid',
-        description: 'A cyclists dream'
-      },
-      {
-        name: 'Amsterdam',
-        description: 'A cyclists dream'
-      }
-    ]
-  }),
+  data: () => ({}),
+  store,
+  computed: mapGetters(["currentCity"]),
   components: {
     Dashboard,
   },
@@ -32,17 +21,59 @@ export default {
 </script>
 
 <style lang='scss'>
-@font-face {
-  font-family: "Lato-Light";
-  src: local("Lato-Light"), url("./fonts/Lato-Light.ttf") format("truetype"),
-    url("/fonts/Lato-Light.woff2") format("woff2"),
-    url("/fonts/Lato-Light.woff") format("woff");
+@import "./assets/css/normalize.css";
+@import "./assets/css/skeleton.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
+
 html {
-  font-family: "Lato-Light", Helvetica, sans-serif;
+  color: $black;
 }
 
 body {
-  margin: 20px;
+  width: 100%;
+  height: 100%;
+  @media (min-width: 600px) {
+    height: 100vh;
+  }
+}
+
+#app {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  backdrop-filter: blur(5px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    filter: blur(5px);
+    margin: 0px;
+  }
+}
+
+.Amsterdam {
+  background-image: url("./assets/img/amsterdam.jpg");
+}
+
+.Madrid {
+  background-image: url("./assets/img/madrid.jpg");
+}
+
+.Budapest {
+  background-image: url("./assets/img/budapest.jpg");
 }
 </style>
